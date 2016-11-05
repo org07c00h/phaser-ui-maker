@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />	
+    <meta charset="utf-8">
+    <title>Phaser Full Screen Mobile Example</title>
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <script>
+    WebFont.load({
+	    google: {
+	      families: ['Fredoka+One']
+	    }
+	});
+    </script>
+</head>
+<body bgcolor="#272822">
+    <!-- build:js js/main.min.js -->
+	<script src="js/phaser.min.js"></script>
+	<script src="js/Boot.js"></script>
+	<script src="js/Preloader.js"></script>
+	<script src="js/MainMenu.js"></script>
+	<script src="js/Game.js"></script>
+    <script src="js/main.js"></script>
+	<!-- endbuild -->
+	<div id="app"></div>
+	<div id="orientation"></div>
+	<div id="menu">
+		<button class="add">Add</button>
+		<hr/>
+		<div class="options">
+			<label for="type">type:</label>
+			<input type="text" name="type" id="type" /><br/>
+			<!-- rotation begin -->
+			<label for="angle">angle:</label>
+			<input type="text" name="angle" id="angle" /><br/>
+			<!-- position begin -->
+			<strong>position</strong><br/>
+			<label for="pos_x">x:</label>
+			<input type="text" name="pos_x" id="pos_x" /><br/>
+			<label for="pos_y">y:</label>
+			<input type="text" name="pos_y" id="pos_y" /><br/>
+			<!-- anchor begin -->
+			<strong>anchor</strong><br/>
+			<label for="achor_x">x:</label>
+			<input type="text" name="anchor_x" id="anchor_x" /><br/>
+			<label for="anchor_x">y:</label>
+			<input type="text" name="anchor_y" id="anchor_y" /><br/>
+			<!-- scale begin -->
+			<strong>scale</strong><br/>
+			<label for="scale_x">x:</label>
+			<input type="text" name="scale_x" id="scale_x" /><br/>
+			<label for="scale_y">y:</label>
+			<input type="text" name="scale_y" id="scale_y" /><br/>
+			<!-- save button -->
+			<button class="save">save</button>
+		</div>
+		<hr/>
+		 <button class="generate">Code</button>
+	</div>
+</body>
+</html>
