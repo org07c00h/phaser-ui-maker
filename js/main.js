@@ -51,6 +51,7 @@ var scaleUI = {
 			currentImage.anchor.y = +document.getElementById("anchor_y").value;
 			currentImage.scale.x = +document.getElementById("scale_x").value;
 			currentImage.scale.y = +document.getElementById("scale_y").value;
+			currentImage.angle = +document.getElementById("angle").value;
 			updateUIPosition();
 		});
 		document.addEventListener('keyup', (ev) => {
@@ -61,7 +62,7 @@ var scaleUI = {
 						toggleScaleUI();
 					break;
 					case 65:
-						console.log('anchor me');
+						toggleAnchorUI();
 					break;
 					case 82:
 						console.log('rotate me');
@@ -78,6 +79,19 @@ function getRandomElementFromArray(arr) {
 	let id = Math.floor(Math.random() * (arr.length));
 	return arr[id];
 }
+function toggleAnchorUI() {
+	if (centerPointer.alpha == 1) {
+		centerPointer.alpha = 0;
+	} else {
+		centerPointer.alpha = 1;
+	}
+	centerPointer.x = currentImage.x;
+	centerPointer.y = currentImage.y;
+	centerPointer.anchor.set(0.5);
+	//  todo 1 (disable other intefrace elemts) +0: 
+	disableScaleUI();
+
+}
 function toggleScaleUI() {
 	let keys = Object.keys(scaleUI);
 	keys.forEach((key) => {
@@ -87,11 +101,8 @@ function toggleScaleUI() {
 			scaleUI[key].alpha = 1;
 		}
 		scaleUI[key].inputEnabled = !scaleUI[key].inputEnabled;
-		console.log(key, scaleUI[key].inputEnabled);
 	    scaleUI[key].input.enableDrag(scaleUI[key].inputEnabled);
 	});
-	
-	console.log('hello');
 	updateUIPosition();
 }
 function disableScaleUI() {
@@ -104,6 +115,7 @@ function disableScaleUI() {
 function updateUIPosition() {
 	scaleUI.ne.x = currentImage.x + currentImage.width * (1 - currentImage.anchor.x);
 	scaleUI.ne.y = currentImage.y - currentImage.height * currentImage.anchor.y;
+	// rotateUI(scaleUI)
 	scaleUI.nw.x = currentImage.x - currentImage.width * (currentImage.anchor.x);
 	scaleUI.nw.y = currentImage.y - currentImage.height * currentImage.anchor.y;
 
@@ -124,4 +136,15 @@ function updateUIPosition() {
 	
 	scaleUI.e.x = currentImage.x + currentImage.width * (1 - currentImage.anchor.x);
 	scaleUI.e.y = currentImage.y + currentImage.height * (0.5 - currentImage.anchor.y);
+	for(let key in scaleUI) {
+		rotateUI(scaleUI[key]);
+	}
+}
+function rotateUI(image) {
+	let x = image.x - currentImage.x;
+	let y = image.y - currentImage.y;
+	let angle = Math.PI * currentImage.angle / 180;
+	image.x = Math.cos(angle) * x - Math.sin(angle) * y + currentImage.x;
+	image.y = Math.sin(angle) * x + Math.cos(angle) * y + currentImage.y;
+
 }

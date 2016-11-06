@@ -25,8 +25,9 @@ BasicGame.Preloader.prototype = {
 		//	As this is just a Project Template I've not provided these assets, the lines below won't work as the files themselves will 404, they are just an example of use.
 		game.load.atlas('atlas', 'images/foobar.png', 'images/foobar.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 		game.load.image('square', 'images/square.png');
+		game.load.image('bg', 'images/bg.jpg');
 		// game.load.image('centerPointer', 'images/center.png');
-		game.load.image('centerPointer', 'images/foobar101.png');
+		game.load.image('centerPointer', 'images/foobar10.png');
 		// this.load.atlas('playButton', 'images/play_button.png', 'images/play_button.json');
 		// this.load.audio('titleMusic', ['audio/main_menu.mp3']);
 		// this.load.bitmapFont('caslon', 'fonts/caslon.png', 'fonts/caslon.xml');

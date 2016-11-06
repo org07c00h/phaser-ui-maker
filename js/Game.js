@@ -28,6 +28,14 @@ BasicGame.Game = function (game) {
 BasicGame.Game.prototype = {
 
 	create: function () {
+        let x = 0;
+        let y = 0;
+        let bgImage = game.add.image(x, 0, 'bg');
+        for (let i = 0; i < game.world.width / bgImage.width; i++) {
+            for (let j = 0; j < game.world.height / bgImage.height; j++) {
+                game.add.image(bgImage.width * i, bgImage.height * j, 'bg');
+            }
+        }
         this.buttons = game.add.group();
         this.ui = game.add.group();
         this.interface = game.add.group();
@@ -50,7 +58,7 @@ BasicGame.Game.prototype = {
         centerPointer = game.add.image(120, 20, 'centerPointer');
         let images = game.cache._cacheMap[Phaser.Cache.IMAGE];
         let frames = images.atlas.frameData._frames;
-        let y = 20;
+        y = 20;
         for (let i = 0; i < frames.length; i++) {
             let frame =  images.atlas.frameData._frames[i];
             let image = game.add.image(game.world.centerX - 100, y, "atlas", frame.name);
@@ -60,7 +68,7 @@ BasicGame.Game.prototype = {
                 this.toggleAtlasInput();
                 let img = game.add.sprite(game.world.centerX, game.world.centerY, "atlas", image._frame.name);
                 img.inputEnabled = true;
-                img.input.enableDrag(true);
+                img.input.enableDrag();
                 img.options = {
                     type: "sprite",
                     height: img.height,
